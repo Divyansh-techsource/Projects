@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizMaster Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Welcome Screen -->
+  <div id="screen-welcome" class="screen active">
+    <div class="welcome-bg">
+      <span class="bg-letter">Q</span>
+    </div>
+    <div class="welcome-content">
+      <p class="eyebrow">Are you ready?</p>
+      <h1 class="logo">QUIZ<br><span>MASTER</span></h1>
+      <p class="subtitle">10 questions · Timed · Ranked</p>
+
+      <div class="category-select">
+        <p class="label">Choose a category</p>
+        <div class="categories" id="category-list">
+          <button class="cat-btn active" data-cat="general">🌍 General</button>
+          <button class="cat-btn" data-cat="science">🔬 Science</button>
+          <button class="cat-btn" data-cat="history">📜 History</button>
+          <button class="cat-btn" data-cat="tech">💻 Tech</button>
+        </div>
+      </div>
+
+      <div class="difficulty-select">
+        <p class="label">Difficulty</p>
+        <div class="difficulties" id="difficulty-list">
+          <button class="diff-btn active" data-diff="easy">Easy</button>
+          <button class="diff-btn" data-diff="medium">Medium</button>
+          <button class="diff-btn" data-diff="hard">Hard</button>
+        </div>
+      </div>
+
+      <button class="btn-start" id="btn-start">Start Quiz →</button>
+    </div>
+  </div>
+
+  <!--Quiz Screen-->
+  <div id="screen-quiz" class="screen">
+    <header class="quiz-header">
+      <div class="quiz-meta">
+        <span id="category-tag" class="tag">General</span>
+        <span id="difficulty-tag" class="tag tag-diff">Easy</span>
+      </div>
+      <div class="timer-wrap">
+        <svg class="timer-ring" viewBox="0 0 44 44">
+          <circle cx="22" cy="22" r="18" class="ring-bg"/>
+          <circle cx="22" cy="22" r="18" class="ring-fill" id="timer-ring"/>
+        </svg>
+        <span id="timer-text">15</span>
+      </div>
+      <div class="score-box">
+        <span id="live-score">0</span>
+        <span class="score-label">pts</span>
+      </div>
+    </header>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progress-bar"></div>
+      <span id="q-counter">1 / 10</span>
+    </div>
+
+    <main class="quiz-body">
+      <div class="question-area">
+        <p class="q-number" id="q-number">Question 01</p>
+        <h2 class="question-text" id="question-text">Loading question…</h2>
+      </div>
+
+      <div class="options-grid" id="options-grid">
+        <!-- Options injected by JS -->
+      </div>
+
+      <div class="quiz-footer">
+        <button class="btn-skip" id="btn-skip">Skip →</button>
+        <div class="streak-display" id="streak-display" style="display:none">
+          🔥 <span id="streak-count">0</span> streak!
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!--Results Screen-->
+  <div id="screen-result" class="screen">
+    <div class="result-wrap">
+      <div class="result-badge" id="result-badge">🏆</div>
+      <p class="result-rank" id="result-rank">Champion</p>
+      <h2 class="result-score" id="result-score">0 / 10</h2>
+      <p class="result-pts" id="result-pts">0 points earned</p>
+
+      <div class="result-stats">
+        <div class="stat">
+          <span class="stat-val" id="stat-correct">0</span>
+          <span class="stat-lbl">Correct</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" id="stat-wrong">0</span>
+          <span class="stat-lbl">Wrong</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" id="stat-skipped">0</span>
+          <span class="stat-lbl">Skipped</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" id="stat-streak">0</span>
+          <span class="stat-lbl">Best Streak</span>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn-start" id="btn-restart">Play Again</button>
+        <button class="btn-review" id="btn-review">Review Answers</button>
+        <button class="btn-home" id="btn-home-result">⌂ Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!--Review Screen-->
+  <div id="screen-review" class="screen">
+    <div class="review-header">
+      <button class="btn-back" id="btn-back">← Back to Results</button>
+      <h2>Answer Review</h2>
+      <button class="btn-home btn-home-review" id="btn-home-review">⌂ Home</button>
+    </div>
+    <div class="review-list" id="review-list"></div>
+  </div>
+
+  <!-- Overlay: Feedback flash -->
+  <div class="feedback-overlay" id="feedback-overlay"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
