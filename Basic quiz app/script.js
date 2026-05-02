@@ -1,9 +1,3 @@
-/* ============================================
-   QUIZMASTER PRO — script.js
-   Questions are separated by difficulty per
-   category so each mode has unique content.
-   ============================================ */
-
 'use strict';
 
 /* ─── QUESTION BANK (category, difficulty, questions) ─── */
