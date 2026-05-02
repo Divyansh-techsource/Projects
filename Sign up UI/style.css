@@ -216,7 +216,6 @@ input:focus {
   background: #12161f;
   box-shadow: 0 0 0 3px rgba(56,189,248,.1);
 }
-input:focus + .input-status + ~ svg,
 .input-wrap:focus-within .input-icon svg { color: var(--accent2); }
 
 /* Validation states */
