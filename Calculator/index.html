@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="calc-wrapper">
+    <div class="calc">
+
+      <div class="display">
+        <div class="history-bar" id="historyBar"></div>
+        <div class="expr" id="expr">&nbsp;</div>
+        <div class="result" id="result">0</div>
+        <div class="mode-badge" id="modeBadge">DEG</div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" id="tabBasic" onclick="switchMode('basic')">Basic</button>
+        <button class="tab" id="tabSci" onclick="switchMode('sci')">Scientific</button>
+        <button class="tab" id="tabHist" onclick="switchMode('hist')">History</button>
+      </div>
+
+      <!-- Basic Panel -->
+      <div class="panel" id="panelBasic">
+        <div class="grid grid-4">
+          <button class="btn fn" onclick="calc('AC')">AC</button>
+          <button class="btn fn" onclick="calc('back')">⌫</button>
+          <button class="btn fn" onclick="calc('%')">%</button>
+          <button class="btn op" onclick="calc('/')">÷</button>
+
+          <button class="btn num" onclick="calc('7')">7</button>
+          <button class="btn num" onclick="calc('8')">8</button>
+          <button class="btn num" onclick="calc('9')">9</button>
+          <button class="btn op" onclick="calc('*')">×</button>
+
+          <button class="btn num" onclick="calc('4')">4</button>
+          <button class="btn num" onclick="calc('5')">5</button>
+          <button class="btn num" onclick="calc('6')">6</button>
+          <button class="btn op" onclick="calc('-')">−</button>
+
+          <button class="btn num" onclick="calc('1')">1</button>
+          <button class="btn num" onclick="calc('2')">2</button>
+          <button class="btn num" onclick="calc('3')">3</button>
+          <button class="btn op" onclick="calc('+')">+</button>
+
+          <button class="btn num span2" onclick="calc('0')">0</button>
+          <button class="btn num" onclick="calc('.')">.</button>
+          <button class="btn eq" onclick="calc('=')">=</button>
+        </div>
+      </div>
+
+      <!-- Scientific Panel -->
+      <div class="panel hidden" id="panelSci">
+        <div class="grid grid-4">
+          <button class="btn sci" onclick="calcSci('sin')">sin</button>
+          <button class="btn sci" onclick="calcSci('cos')">cos</button>
+          <button class="btn sci" onclick="calcSci('tan')">tan</button>
+          <button class="btn sci" onclick="toggleDeg()">DEG/RAD</button>
+
+          <button class="btn sci" onclick="calcSci('log')">log</button>
+          <button class="btn sci" onclick="calcSci('ln')">ln</button>
+          <button class="btn sci" onclick="calcSci('sqrt')">√</button>
+          <button class="btn sci" onclick="calcSci('sq')">x²</button>
+
+          <button class="btn sci" onclick="calcSci('pi')">π</button>
+          <button class="btn sci" onclick="calcSci('e')">e</button>
+          <button class="btn sci" onclick="calcSci('pow')">xʸ</button>
+          <button class="btn sci" onclick="calcSci('inv')">1/x</button>
+
+          <button class="btn sci" onclick="calc('(')"> ( </button>
+          <button class="btn sci" onclick="calc(')')"> ) </button>
+          <button class="btn fn" onclick="calc('back')">⌫</button>
+          <button class="btn fn" onclick="calc('AC')">AC</button>
+
+          <button class="btn num" onclick="calc('7')">7</button>
+          <button class="btn num" onclick="calc('8')">8</button>
+          <button class="btn num" onclick="calc('9')">9</button>
+          <button class="btn op" onclick="calc('/')">÷</button>
+
+          <button class="btn num" onclick="calc('4')">4</button>
+          <button class="btn num" onclick="calc('5')">5</button>
+          <button class="btn num" onclick="calc('6')">6</button>
+          <button class="btn op" onclick="calc('*')">×</button>
+
+          <button class="btn num" onclick="calc('1')">1</button>
+          <button class="btn num" onclick="calc('2')">2</button>
+          <button class="btn num" onclick="calc('3')">3</button>
+          <button class="btn op" onclick="calc('-')">−</button>
+
+          <button class="btn num span2" onclick="calc('0')">0</button>
+          <button class="btn num" onclick="calc('.')">.</button>
+          <button class="btn eq" onclick="calc('=')">=</button>
+
+          <button class="btn op" onclick="calc('+')">+</button>
+        </div>
+      </div>
+
+      <!-- History Panel -->
+      <div class="panel hidden" id="panelHist">
+        <div class="hist-list" id="histList">
+          <p class="hist-empty">No calculations yet.</p>
+        </div>
+        <button class="btn fn" style="width:100%;margin-top:8px;" onclick="clearHistory()">Clear History</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
