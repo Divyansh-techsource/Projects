@@ -1,17 +1,17 @@
-// ── State ──────────────────────────────────────────────────
+//State
 let expr       = '';
 let justEvaled = false;
 let useDeg     = true;
 let history    = JSON.parse(localStorage.getItem('calc_history') || '[]');
 let currentMode = 'basic';
 
-// ── DOM refs ────────────────────────────────────────────────
+//DOM refs 
 const dispResult  = document.getElementById('result');
 const dispExpr    = document.getElementById('expr');
 const dispHistory = document.getElementById('historyBar');
 const modeBadge   = document.getElementById('modeBadge');
 
-// ── Helpers ─────────────────────────────────────────────────
+//Helpers
 function fmt(n) {
   if (isNaN(n) || !isFinite(n)) return 'Error';
   const abs = Math.abs(n);
@@ -34,7 +34,7 @@ function setExpr(val) {
 
 function toRad(deg) { return (deg * Math.PI) / 180; }
 
-// ── Ripple ───────────────────────────────────────────────────
+//Ripple
 document.querySelectorAll('.btn').forEach(btn => {
   btn.addEventListener('click', function(e) {
     const r = document.createElement('span');
@@ -49,7 +49,7 @@ document.querySelectorAll('.btn').forEach(btn => {
   });
 });
 
-// ── Main calc function ───────────────────────────────────────
+//Main calc function
 function calc(v) {
   const ops = ['+', '-', '*', '/'];
 
@@ -148,7 +148,7 @@ function calc(v) {
   setExpr('');
 }
 
-// ── Scientific functions ─────────────────────────────────────
+//Scientific functions
 function calcSci(fn) {
   const ops = ['+', '-', '*', '/'];
 
@@ -230,13 +230,13 @@ function calcSci(fn) {
   } catch(e) {}
 }
 
-// ── DEG / RAD toggle ─────────────────────────────────────────
+//DEG / RAD toggle
 function toggleDeg() {
   useDeg = !useDeg;
   modeBadge.textContent = useDeg ? 'DEG' : 'RAD';
 }
 
-// ── Tab switching ─────────────────────────────────────────────
+//Tab switching
 function switchMode(mode) {
   currentMode = mode;
   ['basic','sci','hist'].forEach(m => {
@@ -246,7 +246,7 @@ function switchMode(mode) {
   if (mode === 'hist') renderHistory();
 }
 
-// ── History ───────────────────────────────────────────────────
+//History
 function addHistory(expression, value) {
   history.unshift({ expr: expression, val: value, time: Date.now() });
   if (history.length > 50) history.pop();
@@ -281,7 +281,7 @@ function clearHistory() {
   renderHistory();
 }
 
-// ── Keyboard support ─────────────────────────────────────────
+//Keyboard support
 document.addEventListener('keydown', e => {
   if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
 
@@ -306,5 +306,5 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── Init ──────────────────────────────────────────────────────
+//Init
 modeBadge.textContent = useDeg ? 'DEG' : 'RAD';
