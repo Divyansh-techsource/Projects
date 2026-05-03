@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flixify — Netflix Clone</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Our external stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+       <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+
+    <div class="navbar__logo">Flixify</div>
+
+    <ul class="navbar__links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">TV Shows</a></li>
+      <li><a href="#">Movies</a></li>
+      <li><a href="#">New &amp; Popular</a></li>
+      <li><a href="#">My List</a></li>
+    </ul>
+
+    <div class="navbar__right">
+      <button class="search-btn" title="Search">⌕</button>
+      <button class="btn-signin" onclick="showToast('Sign In clicked!')">Sign In</button>
+    </div>
+
+  </nav>
+
+       <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero__content">
+
+      <div class="hero__badge">▶ &nbsp;Now Trending #1</div>
+
+      <h1 class="hero__title">Midnight<br>Chronicles</h1>
+
+      <div class="hero__meta">
+        <span class="match">97% Match</span>
+        <span>2024</span>
+        <span class="rating">TV-MA</span>
+        <span>2 Seasons</span>
+      </div>
+
+      <p class="hero__desc">
+        A brilliant detective haunted by her past hunts a ghost-like serial killer
+        through neon-lit city streets. Each clue unravels a deeper conspiracy that
+        threatens to shake the foundations of everything she believes.
+      </p>
+
+      <div class="hero__buttons">
+        <button class="btn btn--play" onclick="openModal(featuredMovie)">▶ Play</button>
+        <button class="btn btn--info" onclick="openModal(featuredMovie)">ℹ More Info</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Smooth fade strip between hero and the content below -->
+  <div class="hero-fade"></div>
+
+
+       <!-- GENRE FILTER PILLS -->
+  <div class="genre-bar" id="genreBar"></div>
+
+       <!-- MOVIE ROWS (main section) -->
+  <div class="rows-container" id="rowsContainer"></div>
+
+
+       <!-- FEATURED MID-PAGE BANNER -->
+  <div class="featured-banner">
+    <div class="featured-banner__content">
+      <div class="featured-banner__tag">✦ Original Series</div>
+      <h2 class="featured-banner__title">The Last Ember</h2>
+      <button
+        class="featured-banner__btn"
+        onclick="showToast('Starting The Last Ember...')">
+        ▶ Watch Now
+      </button>
+    </div>
+  </div>
+
+
+       <!-- EXTRA ROWS (below the banner) -->
+  <div id="extraRows" style="padding: 0 4% 4rem;"></div>
+
+
+       <!-- FOOTER -->
+  <footer>
+
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Account</a></li>
+          <li><a href="#">Redeem Gift</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Compliance</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Devices</h4>
+        <ul>
+          <li><a href="#">Smart TV</a></li>
+          <li><a href="#">iOS &amp; Android</a></li>
+          <li><a href="#">Chromecast</a></li>
+          <li><a href="#">PlayStation</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="footer__logo">Flixify</div>
+      <span class="footer__copy">© 2024 Flixify Clone. Built for learning purposes.</span>
+    </div>
+
+  </footer>
+
+
+       <!-- MODAL (hidden by default) -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+
+      <div class="modal__hero">
+        <img id="modalImg" src="" alt="" />
+        <button class="modal__close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal__body">
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <div class="modal__meta"  id="modalMeta"></div>
+        <p  class="modal__desc"   id="modalDesc"></p>
+        <div class="modal__actions">
+          <button class="btn btn--play" onclick="showToast('Playing now!')">▶ Play</button>
+          <button class="btn btn--info" onclick="showToast('Added to your list!')">+ My List</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+       <!-- TOAST NOTIFICATION (slide-up feedback) -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
