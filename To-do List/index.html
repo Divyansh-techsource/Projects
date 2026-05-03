@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tasko — Smart To-Do</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Task<span>o</span></span>
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+
+    <div class="stats-panel">
+      <div class="stat-card">
+        <span class="stat-num" id="totalCount">0</span>
+        <span class="stat-label">Total</span>
+      </div>
+      <div class="stat-card accent">
+        <span class="stat-num" id="pendingCount">0</span>
+        <span class="stat-label">Pending</span>
+      </div>
+      <div class="stat-card success">
+        <span class="stat-num" id="doneCount">0</span>
+        <span class="stat-label">Done</span>
+      </div>
+    </div>
+
+    <nav class="filter-nav">
+      <button class="filter-btn active" data-filter="all">
+        <span class="filter-icon">📋</span> All Tasks
+      </button>
+      <button class="filter-btn" data-filter="pending">
+        <span class="filter-icon">⏳</span> Pending
+      </button>
+      <button class="filter-btn" data-filter="completed">
+        <span class="filter-icon">✅</span> Completed
+      </button>
+      <hr class="nav-divider" />
+      <button class="filter-btn" data-filter="high">
+        <span class="filter-icon">🔴</span> High Priority
+      </button>
+      <button class="filter-btn" data-filter="medium">
+        <span class="filter-icon">🟡</span> Medium Priority
+      </button>
+      <button class="filter-btn" data-filter="low">
+        <span class="filter-icon">🟢</span> Low Priority
+      </button>
+      <hr class="nav-divider" />
+      <button class="filter-btn" data-filter="overdue">
+        <span class="filter-icon">⚠️</span> Overdue
+      </button>
+      <button class="filter-btn" data-filter="today">
+        <span class="filter-icon">📅</span> Due Today
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="clear-btn" id="clearCompleted">Clear Completed</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="page-title">
+          <h1 id="filterTitle">All Tasks</h1>
+          <p class="page-subtitle" id="filterSubtitle">Everything on your plate</p>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search tasks…" />
+        <button class="search-clear" id="searchClear">✕</button>
+      </div>
+    </header>
+
+    <!-- Add Task Form -->
+    <section class="add-task-section">
+      <div class="add-task-card" id="addTaskCard">
+        <div class="add-task-top">
+          <input type="text" id="taskTitle" class="task-title-input" placeholder="What needs to be done?" maxlength="120" />
+          <button class="expand-btn" id="expandBtn" title="More options">⚙️</button>
+        </div>
+        <div class="add-task-details" id="addTaskDetails">
+          <div class="detail-row">
+            <div class="detail-field">
+              <label>📅 Due Date</label>
+              <input type="date" id="taskDate" />
+            </div>
+            <div class="detail-field">
+              <label>⚠️ Priority</label>
+              <select id="taskPriority">
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="detail-field">
+              <label>🔁 Recurrence</label>
+              <select id="taskRecurrence">
+                <option value="none">None</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+              </select>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-field full-width">
+              <label>📝 Notes</label>
+              <input type="text" id="taskNotes" placeholder="Optional notes…" maxlength="200" />
+            </div>
+          </div>
+        </div>
+        <div class="add-task-actions">
+          <span class="char-count" id="charCount">0 / 120</span>
+          <button class="btn-add" id="addBtn"><span>+ Add Task</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Task List -->
+    <section class="task-list-section">
+      <div class="list-header">
+        <span class="list-count" id="listCount">0 tasks</span>
+        <div class="sort-controls">
+          <label>Sort:</label>
+          <select id="sortSelect">
+            <option value="created">Date Created</option>
+            <option value="dueDate">Due Date</option>
+            <option value="priority">Priority</option>
+            <option value="alpha">A → Z</option>
+          </select>
+        </div>
+      </div>
+
+      <ul class="task-list" id="taskList">
+        <!-- Tasks injected by JS -->
+      </ul>
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">✦</div>
+        <h3>All clear!</h3>
+        <p>No tasks here. Add one above to get started.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="editModal">
+      <div class="modal-header">
+        <h2>Edit Task</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Task Title *</label>
+          <input type="text" id="editTitle" class="modal-input" maxlength="120" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Due Date</label>
+            <input type="date" id="editDate" class="modal-input" />
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <select id="editPriority" class="modal-input">
+              <option value="high">🔴 High</option>
+              <option value="medium">🟡 Medium</option>
+              <option value="low">🟢 Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Recurrence</label>
+          <select id="editRecurrence" class="modal-input">
+            <option value="none">None</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <input type="text" id="editNotes" class="modal-input" maxlength="200" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" id="cancelEdit">Cancel</button>
+        <button class="btn-save" id="saveEdit"><span>Save Changes</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
